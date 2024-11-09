@@ -18,6 +18,7 @@ jobs:
       with:
           distribution: 'temurin'  # Temurin is widely supported
           java-version: '17'
+          
     - name: All tests
       id: all-tests
       uses: classroom-resources/autograding-command-grader@v1
@@ -27,15 +28,17 @@ jobs:
         command: mvn test
         timeout: 10
         max-score: 1
+        
     - name: test add
       id: test-add
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: test add
         setup-command: ''
-        command: mvn test
+        command: mvn test "-Dtest=CalculatorTest"
         timeout: 10
         max-score: 1
+        
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
